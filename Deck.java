@@ -22,11 +22,12 @@ public class Deck
      */
     public Deck(String[] ranks, String[] suits, int[] values)
     {
-        for(int i = 0; i < suits.length; i++)
+        for(int i = 0; i < suits.length - 1; i++)
         {
-            for(int j = 0; j < ranks.length; j++)
+            for(int j = 0; j < ranks.length - 1; j++)
             {
-                cards.add(new Card(ranks[j], suits[i], values[j]));
+                cards.add(size, new Card(ranks[j], suits[i], values[j]));
+                size++;
             }
         }
         shuffle();
@@ -79,27 +80,34 @@ public class Deck
      * @return a string representation of this deck.
      */
     @Override
-    public String toString() {
+    public String toString()
+    {
         String rtn = "size = " + size + "\nUndealt cards: \n";
 
-        for (int k = size - 1; k >= 0; k--) {
+        for (int k = size - 1; k >= 0; k--)
+        {
             rtn = rtn + cards.get(k);
-            if (k != 0) {
+            if (k != 0)
+            {
                 rtn = rtn + ", ";
             }
-            if ((size - k) % 2 == 0) {
+            if ((size - k) % 2 == 0)
+            {
                 // Insert carriage returns so entire deck is visible on console.
                 rtn = rtn + "\n";
             }
         }
 
         rtn = rtn + "\nDealt cards: \n";
-        for (int k = cards.size() - 1; k >= size; k--) {
+        for (int k = cards.size() - 1; k >= size; k--)
+        {
             rtn = rtn + cards.get(k);
-            if (k != size) {
+            if (k != size)
+            {
                 rtn = rtn + ", ";
             }
-            if ((k - cards.size()) % 2 == 0) {
+            if ((k - cards.size()) % 2 == 0)
+            {
                 // Insert carriage returns so entire deck is visible on console.
                 rtn = rtn + "\n";
             }
